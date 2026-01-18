@@ -1,0 +1,83 @@
+import java.util.*;
+
+public class Todolists {
+
+    // Task - Complete the userChoice method
+    //-----------------------------------------------------------------
+    public static String userChoice(int choice, ArrayList<String> taskNames, ArrayList<Date> taskDeadlines, Scanner scanner) {
+        if (choice==1)
+        {
+            System.out.println("Enter task name:");
+            String taskName=scanner.nextLine();
+            System.out.println("Enter deadline(DD-MM-YYYY):");
+            String deadline=scanner.nextLine();
+            addTask(taskNames,taskDeadlines,taskName,deadline);
+        }
+        else if(choice==2)
+        {
+            System.out.println("Enter task number to delete:");
+            int taskNumber=Integer.parseInt(scanner.nextLine());
+            deleteTask(taskNames,taskDeadlines,taskNumber);
+        }
+        else if(choice==3)
+        {
+            displayTasks(taskNames,taskDeadlines);
+        }
+        else if(choice==4)
+        {
+            return "Exiting application. Goodbye!";
+        }
+        else
+        {
+            System.out.println("Invalid choice!\n");
+        }// else if user-choice is 2// else if user-choice is 3// else if user-choice is 4// else Handle invalid choices
+        return null;
+    }
+    //-----------------------------------------------------------------
+
+
+    public static void deleteTask(ArrayList<String> taskNames, ArrayList<Date> taskDeadlines, int taskNumber) {
+        System.out.println("Task with " + taskNumber + " number deleted successfully");
+    }
+
+    public static Date validateDate(String deadline) {
+        return null;
+    }
+
+    public static void addTask(ArrayList<String> taskNames, ArrayList<Date> taskDeadlines, String taskName, String deadline) {
+        System.out.println("Task " + taskName + " - " + deadline + " added successfully");
+    }
+
+    public static void displayTasks(ArrayList<String> taskNames, ArrayList<Date> taskDeadlines) {
+        System.out.println("Let's display the tasks");
+    }
+
+    public static void main(String[] args) {
+        // Two ArrayLists to store task-name and task-deadline separately
+        ArrayList<String> taskNames = new ArrayList<>();
+        ArrayList<Date> taskDeadlines = new ArrayList<>();
+        
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the To-Do List Application!");
+
+        while (true) {
+            System.out.println("Choose one operation:");
+            System.out.println("1. Add Task");
+            System.out.println("2. Delete Task");
+            System.out.println("3. Display Tasks");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice = Integer.parseInt(scanner.nextLine());
+            String value = userChoice(choice, taskNames, taskDeadlines, scanner);
+
+            if ("Exiting application. Goodbye!".equals(value)) {
+                System.out.println(value);
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+}
